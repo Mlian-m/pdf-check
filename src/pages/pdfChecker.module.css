@@ -1,0 +1,88 @@
+.pdf__container{
+    width: 76%;
+    margin: 80px auto;
+    background: #fff;
+    border: 1px solid #e4e4e4;
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.pdf__container h1{
+    font-size: 36px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.pdf__container .pdf__wrapper{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.pdf__container .pdf__wrapper label{
+    font-weight: bold;
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.pdf__container .pdf__wrapper .form__control{
+    width: 100%;
+}
+
+.pdf__container .pdf__wrapper .form__control input{
+    width: 100%;
+    height: 40px;
+    border: 1px solid #e4e4e4;
+    border-radius: 8px;
+    background: #fff;
+    font-size: 15px;
+    color: #000;
+    margin-bottom: 20px;
+    padding: 0 12px;
+}
+
+.pdf__container .pdf__wrapper input:focus,
+.pdf__container .pdf__wrapper input:focus-visible{
+    outline: 0 !important;
+}
+
+.pdf__container button{
+    font-family: "Poppins" !important;
+    background: #000;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 1px solid #000;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+}
+
+.pdf__container .pdf__detail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.pdf__container .pdf__detail p{
+    font-size: 17px;
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+.pdf__container .pdf__detail p span{
+    font-weight: 500;
+}
+
+.pdf__detail .alert__danger{
+    padding: 20px 0;
+    color: crimson;
+}
