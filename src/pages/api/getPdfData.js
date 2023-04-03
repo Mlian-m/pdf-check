@@ -12,36 +12,51 @@ export default function (req, res) {
       errorMessage: "Invalid File Type! Please enter valid pdf url.",
     });
   } else {
-    const fileName = path.join(process.cwd(), `/public/files/pdfFile.pdf`);
-    try {
-      const writeStream = fs.createWriteStream(fileName);
-      https.get(pdfUrl, function (response) {
-        response.pipe(writeStream);
-      });
+    const getPdfInfo = (filename) => {
+      try {
+        const writeStream = fs.createWriteStream(filename);
+        https.get(pdfUrl, function (response) {
+          response.pipe(writeStream);
+        });
 
-      writeStream.on("finish", () => {
-        const pdfFile = path.join(process.cwd(), `/public/files/pdfFile.pdf`);
-        const readFileSync = fs.readFileSync(fileName);
-        res.setHeader("Content-Type", "application/pdf");
+        writeStream.on("finish", () => {
+          const readFileSync = fs.readFileSync(filename);
+          res.setHeader("Content-Type", "application/pdf");
 
-        PdfParse(readFileSync).then((pdfData) => {
-          fs.stat(pdfFile, (err, fileStats) => {
-            if (err) {
-              console.log(err);
-            } else {
-              const fileSize = convertBytes(fileStats.size);
-              res
-                .status(200)
-                .json({ success: true, fileSize: fileSize, pdfData: pdfData });
-            }
+          PdfParse(readFileSync).then((pdfData) => {
+            fs.stat(filename, (err, fileStats) => {
+              if (err) {
+                console.log(err);
+              } else {
+                const fileSize = convertBytes(fileStats.size);
+                res
+                  .status(200)
+                  .json({
+                    success: true,
+                    fileSize: fileSize,
+                    pdfData: pdfData,
+                  });
+              }
+            });
           });
         });
-      });
-    } catch (e) {
-      res.status(400).json({
-        error: true,
-        message: "Something went wrong! Please try later.",
-      });
+      } catch (e) {
+        res.status(400).json({
+          error: true,
+          message: "Something went wrong! Please try later.",
+        });
+      }
+    };
+    const isLocalhost = req.headers.host.startsWith("localhost");
+    if (isLocalhost) {
+      const fileNameLocal = path.join(
+        process.cwd(),
+        `/public/files/pdfFile.pdf`
+      );
+      getPdfInfo(fileNameLocal);
+    } else {
+      const fileNameServer = `/tmp/tmpPdfFile.pdf`;
+      getPdfInfo(fileNameServer);
     }
   }
 }
