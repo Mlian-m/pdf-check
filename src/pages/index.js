@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./pdfChecker.module.css";
 import Head from "next/head";
+import Spinner from "./Spinner";
 
 const Home = () => {
   const [pdfUrl, setPdfUrl] = useState("");
@@ -43,7 +44,9 @@ const Home = () => {
           </div>
         </div>
         <button onClick={fetchPdfInfo} disabled={loading}>
-          {loading ? "Loading..." : "Fetch PDF Info"}
+        {/* {loading ? "Loading..." : "Fetch PDF Info"} */}
+        {loading ? <Spinner /> : "Fetch PDF Info"}
+          
         </button>
         {pdfInfo && (
           <div className={styles.pdf__detail}>

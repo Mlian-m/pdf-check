@@ -61,6 +61,7 @@
     font-weight: 500;
     cursor: pointer;
     letter-spacing: 0.5px;
+    min-height: 70px;
 }
 
 .pdf__container .pdf__detail{
