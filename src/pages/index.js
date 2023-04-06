@@ -48,6 +48,23 @@ const Home = () => {
         {pdfInfo && (
           <div className={styles.pdf__detail}>
             {pdfInfo.fileSize && <h2>PDF Info:</h2>}
+
+            <div className="english-box">
+              <h3 className="non-selectable fr">English:</h3>
+              <p>&amp;nbsp;&lt;img src="/staticfiles/PublicWebsite/assets/images/Common/pdficon_small.gif" alt="pdf"/&gt;&amp;nbsp;({pdfInfo.fileSize}, {pdfInfo.pdfData.numpages} {pdfInfo.pdfData.numpages > 1 ? "pages" : "page"})</p>
+            </div>
+
+            <div className="french-box">
+              <h3 className="non-selectable">French:</h3>
+              <p>&amp;nbsp;&lt;img src="/staticfiles/PublicWebsite/assets/images/Common/pdficon_small.gif" alt="pdf"/&gt;&amp;nbsp;({pdfInfo.fileSize.replace("KB", "Ko").replace("MB", "Mo")}, {pdfInfo.pdfData.numpages} {pdfInfo.pdfData.numpages > 1 ? "pages" : "page"})</p>
+              {/* <button onClick={() => navigator.clipboard.writeText(copyText)}>Copy</button> */}
+            </div>
+
+            <p>
+                <span>Number of {pdfInfo.pdfData.numpages === 1 ? "page" : "pages"}: </span>
+                {pdfInfo.pdfData.numpages}
+            </p>
+
             {pdfInfo.fileSize && (
               <p>
                 <span>File Size:</span> {pdfInfo.fileSize}
