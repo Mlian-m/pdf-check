@@ -63,10 +63,6 @@ const Home = () => {
               {/* <button onClick={() => navigator.clipboard.writeText(copyText)}>Copy</button> */}
             </div>
 
-            <p>
-                <span>Number of {pdfInfo.pdfData.numpages === 1 ? "page" : "pages"}: </span>
-                {pdfInfo.pdfData.numpages}
-            </p>
 
             {pdfInfo.fileSize && (
               <p>
@@ -76,7 +72,9 @@ const Home = () => {
 
             {pdfInfo.pdfData && (
               <p>
-                <span>Number of Pages:</span> {pdfInfo.pdfData.numpages}
+                {/* <span>Number of Pages:</span> {pdfInfo.pdfData.numpages} */}
+                <span>Number of {pdfInfo.pdfData.numpages === 1 ? "page" : "pages"}: </span>
+                {pdfInfo.pdfData.numpages}
               </p>
             )}
 
